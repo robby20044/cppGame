@@ -9,12 +9,18 @@ void Tower::build() {
     float height{};
     switch (type) {
         case 0:
+            { 
             width = 40.f;
             height = 100.f;
             body = sf::RectangleShape({width, height});
-            projectileOrigin = {position.x + width / 2, position.y - height / 5};
+            projectileOrigin = {position.x + width / 2, position.y};
             attackFrequency = 1;
-            break;
+            
+            Marker m(projectileOrigin, 2.f, sf::Color::Green);
+            gs.markers.push_back(m);
+            
+            break; 
+            }
         default:
             break;
     }

@@ -5,14 +5,14 @@
 #include "GameState.h"
 
 Projectile::Projectile(GameState& gs, ProjectileType type, sf::Vector2f originPosition,
-    sf::Vector2f targetPosition) : gs(gs), type(type), originPosition(originPosition), targetPosition(targetPosition) {
+    sf::Vector2f targetPosition) : gs(gs), type(type), originPosition(originPosition), 
+    targetPosition(targetPosition) {
     switch (type) {
         case Rock:
-            { float width = 10.f;
+            { float radius = 10.f;
             speed = 160.f;
-            body = sf::CircleShape(width);
-            originPosition = {originPosition.x - width / 2, originPosition.y - width / 2};
-            body.setPosition(originPosition);
+            body = sf::CircleShape(radius);
+            body.setPosition({originPosition.x - radius, originPosition.y - radius});
             body.setFillColor(sf::Color::Red);
             break; }
         default:

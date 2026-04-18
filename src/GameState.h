@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "Tower.h"
 #include "Projectile.h"
+#include "Marker.h"
 
 
 struct GameState {
@@ -15,4 +16,6 @@ struct GameState {
     std::vector<Tower> towers;
     sf::Vector2f entryPoint;
     sf::Vector2f exitPoint;
+    std::vector<Marker> markers;
+    float totalSeconds{};
 };

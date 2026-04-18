@@ -19,5 +19,6 @@ add_executable(my-game
     src/tower.cpp
     src/projectile.cpp
     src/Enemy.cpp
+    src/Marker.cpp
 )
 target_link_libraries(my-game PRIVATE SFML::Graphics SFML::Window SFML::System)

@@ -20,7 +20,7 @@ void init(GameState& gs) {
     gs.towers.push_back(t1);
     gs.towers[0].build();
 
-    Enemy e1({400.f, 200.f}, Basic);
+    Enemy e1({400.f, 50.f}, Basic);
     gs.enemies.push_back(e1);
 }
 
@@ -60,13 +60,12 @@ void handleEvents(GameState& gs) {
 
 
 void update(GameState& gs) {
-    gs.deltaTime = gs.clock.getElapsedTime().asSeconds();
+    gs.totalSeconds += gs.deltaTime;
+    std::cout << gs.totalSeconds << '\n';
 
     for (Tower& t : gs.towers) {
         t.update();
     }
-
-    gs.clock.restart();
 }
 
 
@@ -81,21 +80,46 @@ void draw(GameState& gs) {
     for (Enemy e : gs.enemies) {
         gs.window.draw(e.body);
     }
+
+    for (Marker m : gs.markers) {
+        gs.window.draw(m.body);
+    }
     gs.window.display();
 }
 
 
 
-int main() {
-    GameState gs;
-    init(gs);
+void debugMode(GameState& gs) {
+    char input = 'c';
+    do {
+        if (input == 'c') {
+            gs.clock.restart();
+            handleEvents(gs);
+            update(gs);
+            draw(gs);
+            gs.deltaTime = gs.clock.getElapsedTime().asSeconds();
+        } else {
+            break;
+        }
+    } while (std::cin >> input);
+}
 
+void run(GameState& gs) {
     while (gs.running) {
+        gs.deltaTime = gs.clock.getElapsedTime().asSeconds();
+        gs.clock.restart();
         handleEvents(gs);
         update(gs);
         draw(gs);
     }
+}
+
+int main() {
+    GameState gs;
+    init(gs);
+
+    // run(gs);
+    debugMode(gs);
 
     return 0;
 }
-
