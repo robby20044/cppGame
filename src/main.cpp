@@ -8,10 +8,15 @@ using std::cout;
 void init(GameState& gs) {
     sf::ContextSettings settings;
     settings.antiAliasingLevel = 8;
-    gs.window = sf::RenderWindow(sf::VideoMode({800, 600}), "game", 
+    gs.window = sf::RenderWindow(sf::VideoMode({1200, 800}), "game", 
                       sf::Style::Default, sf::State::Windowed, settings);
     gs.window.setFramerateLimit(120);
     gs.clock = sf::Clock();
+
+    int winWidth = gs.window.getSize().x;
+    int winHeight = gs.window.getSize().y;
+    int tileSize = 50;
+    gs.grid = Grid(winWidth, winHeight, tileSize);
 
     Tower t1(gs, {100.f, 100.f}, RockTosser);
     gs.towers.push_back(t1);
@@ -20,8 +25,6 @@ void init(GameState& gs) {
     Enemy e1({400.f, 50.f}, Basic);
     gs.enemies.push_back(e1);
 }
-
-
 
 
 void handleEvents(GameState& gs) {
@@ -63,9 +66,18 @@ void draw(GameState& gs) {
     for (Marker m : gs.markers) {
         gs.window.draw(m.body);
     }
+    for (sf::RectangleShape r : gs.test) {
+        gs.window.draw(r);
+    }
+
+    for (Tile t : gs.grid.tiles) {
+        sf::RectangleShape r({40, 40});
+        r.setPosition({static_cast<float>(t.x), static_cast<float>(t.y)});
+        gs.window.draw(r);
+    }
+
     gs.window.display();
 }
-
 
 
 void debugMode(GameState& gs) {
