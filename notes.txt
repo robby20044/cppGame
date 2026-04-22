@@ -1,2 +1,0 @@
-top down view
-    - can only see top of towers
