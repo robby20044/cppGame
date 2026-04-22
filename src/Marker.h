@@ -1,6 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+/*
+* Marker is used to visualize positions by placing a small shape at a given
+* location. 
+*/
 class Marker {
 public:
     sf::CircleShape body;

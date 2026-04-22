@@ -13,9 +13,6 @@ void init(GameState& gs) {
     gs.window.setFramerateLimit(120);
     gs.clock = sf::Clock();
 
-    gs.entryPoint = {0, 300};
-    gs.exitPoint = {800, 300};
-
     Tower t1(gs, {100.f, 100.f}, RockTosser);
     gs.towers.push_back(t1);
     gs.towers[0].build();
@@ -39,30 +36,12 @@ void handleEvents(GameState& gs) {
                 sf::Vector2f pos = enemy.body.getPosition();
                 enemy.setPosition({pos.x - 500 * gs.deltaTime, pos.y});
             }
-            // if (key->scancode == sf::Keyboard::Scancode::W) {
-            //     Enemy& enemy = gs.enemies[0];
-            //     sf::Vector2f pos = enemy.body.getPosition();
-            //     enemy.setPosition({pos.x, pos.y - 500 * gs.deltaTime});
-            // }
-            // if (key->scancode == sf::Keyboard::Scancode::S) {
-            //     Enemy& enemy = gs.enemies[0];
-            //     sf::Vector2f pos = enemy.body.getPosition();
-            //     enemy.setPosition({pos.x, pos.y + 500 * gs.deltaTime});
-            // }
-            // if (key->scancode == sf::Keyboard::Scancode::D) {
-            //     Enemy& enemy = gs.enemies[0];
-            //     sf::Vector2f pos = enemy.body.getPosition();
-            //     enemy.setPosition({pos.x + 500 * gs.deltaTime, pos.y});
-            // }
         }
     }
 }
 
 
 void update(GameState& gs) {
-    gs.totalSeconds += gs.deltaTime;
-    std::cout << gs.totalSeconds << '\n';
-
     for (Tower& t : gs.towers) {
         t.update();
     }

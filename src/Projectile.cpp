@@ -19,17 +19,31 @@ Projectile::Projectile(GameState& gs, ProjectileType type, sf::Vector2f originPo
             std::cout << "invalid projectile type" << '\n';
             break;
     }
+    /*
+    * Computes distance and the time required to cover that distance to gauge
+    * what position the projectile should be in based on how long it has
+    * existed.
+    */
     float xDist = abs(originPosition.x - targetPosition.x);
     float yDist = abs(originPosition.y - targetPosition.y);
     distToTarget = sqrt(xDist * xDist + yDist * yDist);
     timeToReachTarget = distToTarget / speed;
 }
 
+/*
+* Updates the lifetime of the projectile and moves the projectile towards its
+* target.
+*/
 void Projectile::update() {
     addLifetime(gs.deltaTime);
     move();
 }
 
+/* 
+* Determines the progress of the projectile based on its lifetime and time 
+* required to reach the target. Moves the projectile to a position further in 
+* its trajectory based on this progress. 
+*/
 void Projectile::move() {
     float progress = lifetime / timeToReachTarget;
     body.setPosition(lerp(originPosition, targetPosition, progress));

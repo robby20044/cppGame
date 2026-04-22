@@ -9,13 +9,10 @@
 
 struct GameState {
     bool running = true;
-    float deltaTime = 0.f;
+    float deltaTime = 0.f; // time between game loop iterations
     sf::RenderWindow window;
     sf::Clock clock;
-    std::vector<Enemy> enemies;
-    std::vector<Tower> towers;
-    sf::Vector2f entryPoint;
-    sf::Vector2f exitPoint;
-    std::vector<Marker> markers;
-    float totalSeconds{};
+    std::vector<Enemy> enemies; // all currently existing enemies
+    std::vector<Tower> towers; // all currently existing towers
+    std::vector<Marker> markers; // collection of markers
 };

@@ -8,8 +8,8 @@ void Tower::build() {
     float width{};
     float height{};
     switch (type) {
-        case 0:
-            { 
+        case 0: {
+            projType = Rock;
             width = 40.f;
             height = 100.f;
             body = sf::RectangleShape({width, height});
@@ -19,8 +19,7 @@ void Tower::build() {
             Marker m(projectileOrigin, 2.f, sf::Color::Green);
             gs.markers.push_back(m);
             
-            break; 
-            }
+            break; }
         default:
             break;
     }
@@ -28,8 +27,9 @@ void Tower::build() {
 }
 
 
-// update handles attacking and targeting
 void Tower::update() {
+    // Checks if an enemy exists since it is temporarily hard-coded to attack 
+    // the enemy at the first index.
     if (gs.enemies.size() > 0) {
         attackTimer -= gs.deltaTime;
         if (attackTimer <= 0) {
@@ -41,6 +41,9 @@ void Tower::update() {
     }
 }
 
+/*
+* Create a projectile and reset the attack timer.
+*/
 void Tower::attack() {
     Projectile p(gs, Rock, projectileOrigin, gs.enemies[0].position);
     projectiles.push_back(p);

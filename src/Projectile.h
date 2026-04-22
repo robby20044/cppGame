@@ -4,8 +4,13 @@
 
 struct GameState;
 
+// todo: change to enum class
 enum ProjectileType { Rock };
 
+
+/*
+* Created by a tower and moved to a designated target location over time. 
+*/
 class Projectile {
 public:
     Projectile(GameState& gs, ProjectileType type, sf::Vector2f originPostion, sf::Vector2f targetPosition);
