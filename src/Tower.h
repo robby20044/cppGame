@@ -7,10 +7,7 @@ struct GameState;
 
 enum TowerType { RockTosser };
 
-class Tower {
-    void attack();
-    void resetAttackTimer();
-    
+class Tower {  
 public:
     TowerType type;
     sf::Vector2f position;
@@ -25,4 +22,8 @@ public:
     Tower(GameState& gs, sf::Vector2f position, TowerType type);
     void build();
     void update();
+
+    private:
+    void attack();
+    void resetAttackTimer();
 };

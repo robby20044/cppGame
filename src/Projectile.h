@@ -7,6 +7,13 @@ struct GameState;
 enum ProjectileType { Rock };
 
 class Projectile {
+public:
+    Projectile(GameState& gs, ProjectileType type, sf::Vector2f originPostion, sf::Vector2f targetPosition);
+    sf::CircleShape getBody();
+    void update();
+    float getLifetime();
+
+private:
     ProjectileType type;
     sf::Vector2f targetPosition;
     sf::Vector2f originPosition;
@@ -20,9 +27,4 @@ class Projectile {
     void move();
     void addLifetime(float deltaTime);
 
-public:
-    Projectile(GameState& gs, ProjectileType type, sf::Vector2f originPostion, sf::Vector2f targetPosition);
-    sf::CircleShape getBody();
-    void update();
-    float getLifetime();
 };

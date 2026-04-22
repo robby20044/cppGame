@@ -118,8 +118,8 @@ int main() {
     GameState gs;
     init(gs);
 
-    // run(gs);
-    debugMode(gs);
+    run(gs);
+    // debugMode(gs);
 
     return 0;
 }
